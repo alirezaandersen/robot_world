@@ -1,0 +1,83 @@
+---
+robots:
+- id: 1
+  name: GreenSock Jue
+  city: hello
+  state: whatever
+  avatar: https://avatars.githubusercontent.com/u/1692019?v=3
+  birthdate: ASDKLFHASHDL;F
+  date_hired: j
+  department: j
+- id: 2
+  name: Carol Kuhn
+  city: Ritchieville
+  state: Alabama
+  avatar: https://robohash.org/autveroconsequatur.png?size=300x300&set=set1
+  birthdate: 1975-08-04
+  date_hired: 1948-12-10
+  department: Games & Sports
+- id: 3
+  name: Eileen Ruecker III
+  city: Bahringertown
+  state: Delaware
+  avatar: https://robohash.org/doloredoloresnemo.png?size=300x300&set=set1
+  birthdate: 1944-05-04
+  date_hired: 2012-07-09
+  department: Industrial
+- id: 4
+  name: Lavon Grady
+  city: Schmelermouth
+  state: Arkansas
+  avatar: https://robohash.org/estofficiisaut.png?size=300x300&set=set1
+  birthdate: 1962-04-07
+  date_hired: 2013-10-17
+  department: Health
+- id: 5
+  name: Stephania Koelpin IV
+  city: East Audrachester
+  state: Vermont
+  avatar: https://robohash.org/fugitadvoluptates.png?size=300x300&set=set1
+  birthdate: 1943-06-07
+  date_hired: 1981-03-27
+  department: Outdoors
+- id: 6
+  name: Holly Nicolas
+  city: Gusikowskistad
+  state: Illinois
+  avatar: https://robohash.org/nonisteincidunt.png?size=300x300&set=set1
+  birthdate: 1967-02-03
+  date_hired: 1982-04-15
+  department: Games, Clothing & Tools
+- id: 7
+  name: Dr. Tamia Pfannerstill
+  city: North Reginald
+  state: Maine
+  avatar: https://robohash.org/reprehenderitquiad.png?size=300x300&set=set1
+  birthdate: 2004-05-06
+  date_hired: 1993-08-10
+  department: Baby, Industrial & Sports
+- id: 8
+  name: Mauricio Tremblay
+  city: Randychester
+  state: Michigan
+  avatar: https://robohash.org/voluptateharumquam.png?size=300x300&set=set1
+  birthdate: 1926-04-09
+  date_hired: 1973-09-23
+  department: Music, Jewelery & Industrial
+- id: 9
+  name: Mr. Keara Mraz
+  city: New Audrastad
+  state: Florida
+  avatar: https://robohash.org/molestiaecorruptiaspernatur.png?size=300x300&set=set1
+  birthdate: 1935-12-25
+  date_hired: 1958-08-03
+  department: Automotive, Toys & Health
+- id: 10
+  name: Destiny Dach
+  city: South Willy
+  state: Pennsylvania
+  avatar: https://robohash.org/accusamusquaeipsam.png?size=300x300&set=set1
+  birthdate: 1996-02-24
+  date_hired: 1960-03-14
+  department: Music
+total: 10
