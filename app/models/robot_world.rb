@@ -8,6 +8,11 @@ class RobotWorld
     @database = database
   end
 
+  # #file manager => need to change all methods to use this.
+  # def dataset(robot)
+  #   database.from(:robots)
+  # end 
+
   def create(robot)
     database.from(:robots).insert(robot)
   end
