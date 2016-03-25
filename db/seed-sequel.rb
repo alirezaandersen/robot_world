@@ -1,4 +1,5 @@
 require 'faker'
+require 'sequel'
 require '../app/models/robot_world'
 
 class Fixnum
@@ -13,7 +14,7 @@ class Fixnum
   end
 end
 
-database = YAML::Store.new('robot_manager')
+database = Sequel.sqlite('robot_manager_development.sqlite')
 model = RobotWorld.new(database)
 params = {}
 

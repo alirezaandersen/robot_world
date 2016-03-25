@@ -1,5 +1,6 @@
 <h1>All ROBOTS</h1>
-<a href="/robots/new">Create new</a>
+<a href="/robots/new"><input type="submit" value="Create New Robot"></a>
+<a href="/robots/stats"><input type="submit" value="Robot Statistics"></a>
 
 <div class='container'>
   <div class='row'>
@@ -10,11 +11,11 @@
 
     <h3>(<%= robot.id %>) <a href="/robots/<%= robot.id %>"><%= robot.name %></a></h3>
 
-    <a href="/robots/<%= robot.id %>/edit">Edit</a>
+    <a href="/robots/<%= robot.id %>/edit"><input type="submit" value="Edit"></a>
 
   <form action="/robots/<%= robot.id %>" method ="post">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="delete">
+    <input type="submit" value="Delete">
   </form>
 
 <% end %>

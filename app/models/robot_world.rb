@@ -1,7 +1,6 @@
-require 'yaml/store'
-require_relative 'robot'
 
 class RobotWorld
+  include StatisticHelper
   attr_reader :database
 
 
@@ -10,57 +9,39 @@ class RobotWorld
   end
 
   def create(robot)
-    database.transaction do
-      database['robots'] ||= []
-      database['total']  ||= 0
-      database['total']   += 1
-      database['robots'] << { "id"         => database['total'],
-                              "name"       => robot["name"],
-                              "city"       => robot["city"],
-                              "state"      => robot["state"],
-                              "avatar"     => robot["avatar"],
-                              "birthdate"  => robot["birthdate"],
-                              "date_hired" => robot["date_hired"],
-                              "department" => robot["department"]
-                           }
-    end
-  end
-
-  def raw_tasks
-    database.transaction do
-      database['robots'] || []
-    end
+    database.from(:robots).insert(robot)
   end
 
   def all
-    raw_tasks.map { |data| Robot.new(data)}
-  end
-
-  def raw_task(id)
-
-    raw_tasks.find { |robot| robot["id"] == id }
+    database.from(:robots).map { |data| Robot.new(data)}
   end
 
   def find(id)
-    Robot.new(raw_task(id))
+    raw_task = database.from(:robots).where(:id => id).to_a.first
+    Robot.new(raw_task)
   end
 
   def update(id, robot)
-    database.transaction do
-      target = database['robots'].find { |data| data["id"] == id }
-      target["name"]       = robot["name"]
-      target["city"]       = robot["city"]
-      target["state"]      = robot["state"]
-      target["birthdate"]  = robot["birthdate"]
-      target["date_hired"] = robot["date_hired"]
-      target["department"] = robot["department"]
-      target["avatar"]     = robot["avatar"]
-    end
+    database.from(:robots).where(:id => id).update(robot)
   end
 
-  def delete(id)
-    database.transaction do
-      database['robots'].delete_if { |robot| robot["id"] == id }
-    end
+  def destroy(id)
+    database.from(:robots).where(:id => id).delete
   end
+
+  def delete_all
+    database.from(:robots).delete
+  end
+
+  #statistics
+  #figure out robots age
+  def stats
+    x = { average_robots_age: get_average_robot_age,
+    number_of_robots_hired_per_year: robots_hired_per_year,
+    number_of_robots_per_department: employees_per_deparment,
+    number_of_robots_per_city: population_by_city,
+    number_of_robots_per_state: population_by_state }
+    # binding.pry
+  end
+
 end

@@ -1,0 +1,25 @@
+  <h1>Robot Statistics</h1>
+
+  <h1>Number of Robots Per City</h1>
+  <%= pie_chart(@robot_stats[:number_of_robots_per_city]) %>
+
+  <h1>Number of Robots Per State</h1>
+  <%= pie_chart(@robot_stats[:number_of_robots_per_state]) %>
+
+  <h1>Number of Robots Per Hired Per Year</h1>
+<%= pie_chart(@robot_stats[:number_of_robots_hired_per_year]) %>
+
+  <h1>Number of Robots Per Department</h1>
+<%= pie_chart(@robot_stats[:number_of_robots_per_department]) %>
+
+  <h1>Average_Robots_Age</h1>
+
+  <form action="/robots" method ="post">
+    City: <input type="text" name="robot[city]"><br>
+    State: <input type="text" name="robot[state]"><br>
+    Average Robot Age: <input type="text" name="robot[birthdate]"><br>
+    Date Hired: <input type="text" name="robot[date_hired]"><br>
+    Department: <input type="text" name="robot[department]"><br>
+    Avatar: <input type="text" name="robot[avatar]"><br>
+    <input type='submit'>
+  </form>

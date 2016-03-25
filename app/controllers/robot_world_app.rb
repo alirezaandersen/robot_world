@@ -1,20 +1,20 @@
-require 'sinatra'
-require 'models/robot_world'
-
 class RobotWorldApp < Sinatra::Base
-  set :root, File.expand_path("..", __dir__)
-  set :method_override, true
+
+  get '/chart' do
+    @robot_stats = robot_manager.stats
+    erb :chart
+  end
 
   get '/' do
-    "erb :dashboard"
+    @robots = robot_manager.all
+    erb :all
   end
 
-# All
+  # All
   get '/robots' do
-     @robots = robot_manager.all
-     erb :all
+    @robots = robot_manager.all
+    erb :all
   end
-
 
   #Create a new robot
   get '/robots/new' do
@@ -26,8 +26,13 @@ class RobotWorldApp < Sinatra::Base
     redirect '/robots'
   end
 
+  #Robot Stats
+  get '/robots/stats' do
+    @robot_stats = robot_manager.stats
+    erb :dashboard
+  end
 
-  # View single robot by id
+  #Single Robot Profile
   get '/robots/:id' do |id|
     @robot = robot_manager.find(id.to_i)
     erb :show
@@ -40,21 +45,31 @@ class RobotWorldApp < Sinatra::Base
   end
 
   put '/robots/:id' do |id|
-    #binding.pry
     robot_manager.update(id.to_i, params[:robot])
     redirect "/robots/#{id}"
   end
 
+
+
+  #NotFound Error
+  not_found do
+    erb :error
+  end
+
   #Deletes a robot by id
   delete '/robots/:id' do |id|
-    robot_manager.delete(id.to_i)
+    protected!
+    robot_manager.destroy(id.to_i)
     redirect '/robots'
   end
 
   def robot_manager
-    database = YAML::Store.new('db/robot_manager')
+    if ENV["RACK_ENV"] == "test"
+      database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_test.sqlite')
+    else
+      database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_development.sqlite')
+    end
     @robot_manager ||= RobotWorld.new(database)
   end
-
 
 end
