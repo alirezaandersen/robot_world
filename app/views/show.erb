@@ -1,15 +1,27 @@
-<a href="/robots">ROBOT Index</a>
 
-<h1><%= @robot.name %></h1>
+<div class="col-md-12 text-center" "btn-group" role="group" aria-label="...">
+  <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
+  <a href="/robots/new"><button type="button" class="btn btn-default">Create New Robot</button></a>
+  <a href="/robots/stats"><button type="button" class="btn btn-default">Robot Statistic</button></a>
+</div>
+<style>
 
-<img src="<%= @robot.avatar %>">
+    body {
+       background-image: url("http://previews.123rf.com/images/iimages/iimages1310/iimages131000981/23198773-Illustration-of-a-robot-in-a-metallic-frame-Stock-Vector.jpg");
+     }
 
-<p>
-  Name: <%= @robot.name %><br>
-  City: <%= @robot.city %><br>
-  State: <%= @robot.state %><br>
-  Birthdate: <%= @robot.birthdate %><br>
-  Date Hired: <%= @robot.date_hired %><br>
-  Department: <%= @robot.department %><br>
+</style>
+<div class='profile_center'>
+  <h1><%= @robot.name %></h1>
 
-</p>
+  <img src="<%= @robot.avatar %>">
+
+  <p><h3>
+    Name: <%= @robot.name %><br>
+    City: <%= @robot.city %><br>
+    State: <%= @robot.state %><br>
+    Birthdate: <%= @robot.birthdate %><br>
+    Date Hired: <%= @robot.date_hired %><br>
+    Department: <%= @robot.department %><br>
+  </h3></p>
+</div>

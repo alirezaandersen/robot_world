@@ -1,19 +1,20 @@
-  <h1>Robot Statistics</h1>
 
-  <div class="btn-group" role="group" aria-label="...">
+  <div class="col-md-12 text-center" "btn-group" role="group" aria-label="...">
     <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
     <a href="/robots"><button type="button" class="btn btn-default">Meet All Robots</button></a>
     <a href="/robots/new"><button type="button" class="btn btn-default">Create New Robot</button></a>
   </div>
 
-  <h1>Number of Robots Per City</h1>
+  <h1>Robot Statistics</h1><br>
+
+  <h2>Number of Robots Per City</h2>
   <%= pie_chart(@robot_stats[:number_of_robots_per_city]) %>
 
-  <h1>Number of Robots Per State</h1>
+  <h2>Number of Robots Per State</h2>
   <%= pie_chart(@robot_stats[:number_of_robots_per_state]) %>
 
-  <h1>Number of Robots Per Hired Per Year</h1>
+  <h2>Number of Robots Per Hired Per Year</h2>
 <%= pie_chart(@robot_stats[:number_of_robots_hired_per_year]) %>
 
-  <h1>Number of Robots Per Department</h1>
+  <h2>Number of Robots Per Department</h2>
 <%= pie_chart(@robot_stats[:number_of_robots_per_department]) %>

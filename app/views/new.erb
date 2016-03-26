@@ -1,10 +1,22 @@
-<h1>Create New Robot</h1>
-
-<div class="btn-group" role="group" aria-label="...">
+<div class="col-md-12 text-center" "btn-group" role="group" aria-label="...">
   <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
   <a href="/robots/stats"><button type="button" class="btn btn-default">Robot Statistic</button></a>
 </div>
 
+<style>
+
+    body {
+       background-image: url("http://img-2.gizmag.com/roboy.png?auto=format%2Ccompress&ch=Width%2CDPR&crop=entropy&fit=crop&h=394&q=60&w=700&s=73a57bb67f5a3c0aef31c52fcf1798ea");
+     }
+
+</style>
+
+<div class='profile_center'>
+
+<h1>Create New Robot</h1>
+
+
   <form action="/robots" method ="post">
     <%= erb :_form %>
   </form>
+</div>

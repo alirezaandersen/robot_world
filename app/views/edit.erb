@@ -1,5 +1,22 @@
-<p>Edit</p>
+<div class="col-md-12 text-center" "btn-group" role="group" aria-label="...">
+  <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
+  <a href="/robots/stats"><button type="button" class="btn btn-default">Robot Statistic</button></a>
+</div>
+
+
+
+<style>
+    body {
+       background-image: url("http://thumbs.dreamstime.com/z/metal-frame-robot-rocket-illustration-35321744.jpg");
+     }
+</style>
+
+<div class='profile_center'>
+<h1>Update Robot Info</h1>
+
+
 <form action="/robots/<%=@robot.id %>" method ="post">
   <input type="hidden" name="_method" value= "put">
   <%= erb :_form %>
 </form>
+</div>
