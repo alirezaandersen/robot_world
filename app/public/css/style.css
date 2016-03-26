@@ -1,1 +1,19 @@
-background-image http://payload401.cargocollective.com/1/16/520739/10329173/last-snapshot_1000.jpg;
+
+/*************************** HEADINGS **********************/
+/* heading font style, size */
+
+.heading {
+  font-weight: bold;
+  
+}
+
+/* heading font color */
+.heading-white{
+  color: white;
+}
+
+.heading-black{
+  color: black;
+}
+
+/***********************************************************/

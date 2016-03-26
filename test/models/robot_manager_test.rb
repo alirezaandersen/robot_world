@@ -2,51 +2,44 @@ require_relative '../test_helper'
 
 class RobotWorldAppTest < Minitest::Test
   include TestHelpers
+  include StatisticHelper
 
-  # def setup
-  #   robot_manager.create({
-  #     :name        =>"Maci Raynor DDS",
-  #     :city        =>"New Pattie",
-  #     :state       =>"Texas",
-  #     :avatar      =>"https://robohash.org/sedquovoluptatibus.png?size=300x300&set=set1",
-  #     :birthdate   =>"2005-10-30",
-  #     :date_hired  =>"1975-01-24",
-  #     :department  =>"Books"})
+  def setup
+    robot_manager.create({
+     :name       =>"ROBOT 2",
+     :city       =>"Riverside",
+     :state      =>"California",
+     :birthdate  =>"1923-02-14",
+     :avatar     =>"https://robohash.org/quasiquiqui.png?size=300x300&set=set1",
+     :date_hired =>"1943-03-24",
+     :department =>"Sports & Health"})
 
-    # robot_manager.create({
-    #    "name"       =>"Alayna Collier",
-    #    "city"       =>"West Sydneeville",
-    #    "state"      =>"North Dakota",
-    #    "avatar"     =>"https://robohash.org/utquasprovident.png?size=300x300&set=set1",
-    #    "birthdate"  =>"1931-01-23",
-    #    "date_hired" =>"2009-06-18",
-    #    "department" =>"Music, Clothing & Movies"})
-    #
-    #  robot_manager.create({
-    #    "name"        =>"Berta Beatty",
-    #    "city"        =>"Maximillianville",
-    #    "state"       =>"Iowa",
-    #    "avatar"      =>"https://robohash.org/fugiteumqui.png?size=300x300&set=set1",
-    #    "birthdate"   =>"1922-06-05",
-    #    "date_hired"  =>"1962-09-18",
-    #    "department"  =>"Music"})
-  # end
+    robot_manager.create({
+     :name       =>"ROBOT 2",
+     :city       =>"Chatsworth",
+     :state      =>"California",
+     :birthdate  =>"1913-02-14",
+     :avatar     =>"https://robohash.org/quasiquiqui.png?size=300x300&set=set1",
+     :date_hired =>"1942-03-24",
+     :department =>"Sports & Hunting"})
 
-  # def test_it_can_find_all
-  #
-  #   robo = robot_manager.all
-  #   assert_equal 3, robo.size
-  # end
+    robot_manager.create({
+     :name       =>"ROBOT 2",
+     :city       =>"Chatsworth",
+     :state      =>"California",
+     :birthdate  =>"1923-02-14",
+     :avatar     =>"https://robohash.org/quasiquiqui.png?size=300x300&set=set1",
+     :date_hired =>"1943-03-24",
+     :department =>"Sports & Health"})
+  end
 
-  # def test_it_can_find_a_specific_robot_by_id
-  #
-  #   robo = robot_manager.find(2)
-  #   assert_equal "Alayna Collier", robo.name
-  #   assert_equal "West Sydneeville", robo.city
-  #   assert_equal 2, robo.id
-  #   assert_equal "1931-01-23", robo.birthdate
-  # end
-  #
+  def test_it_can_find_a_specific_robot_by_id
+    create_robots(5)
+    robo = robot_manager.all.last
+    assert_equal "ROBOT 5", robo.name
+    assert_equal "Robot city 6", robo.city
+  end
+
   def test_it_can_create_a_new_robot
     robot_manager.create({
        :name        =>"Johnny Beatty",
@@ -62,33 +55,83 @@ class RobotWorldAppTest < Minitest::Test
 
     assert_equal "Johnny Beatty", robot.name
   end
-  #
-  # def test_it_can_update_an_existing_robot
-  #   robo = robot_manager.find(2)
-  #   assert_equal "Alayna Collier", robo.name
-  #   assert_equal "West Sydneeville", robo.city
-  #   assert_equal 2, robo.id
-  #   assert_equal "1931-01-23", robo.birthdate
-  #
-  #   updated_robot =
-  #   {"name"       =>"Alayna Collier",
-  #    "city"       =>"Chatsworth",
-  #    "state"      =>"California",
-  #    "avatar"     =>"https://robohash.org/utquasprovident.png?size=300x300&set=set1",
-  #    "birthdate"  =>"1931-01-23",
-  #    "date_hired" =>"2009-06-18",
-  #    "department" =>"Music, Clothing & Movies"}
-  #
-  #   robot_manager.update(2, updated_robot)
-  #   robo = robot_manager.find(2)
-  #   assert_equal "Chatsworth", robo.city
-  #   assert_equal "California", robo.state
-  #   assert_equal 2, robo.id
-  # end
-  #
-  # def test_it_will_destroy_an_exisiting_robot
-  #   robo = robot_manager.destroy(3)
-  #   assert_equal 2, robo.size
-  # end
+
+  def test_it_can_update_an_existing_robot
+
+    create_robots(2)
+    robo = robot_manager.all.last
+    assert_equal "ROBOT 2", robo.name
+    assert_equal "Robot city 3", robo.city
+    assert_equal Date.new.class, Date.strptime(robo.birthdate,"%Y-%m-%d").class
+
+    updated_robo_data =
+    {
+     :name       =>"ROBOT 2",
+     :city       =>"Chatsworth",
+     :state      =>"California",
+     :birthdate  =>"1923-02-14",
+     :avatar     =>"https://robohash.org/quasiquiqui.png?size=300x300&set=set1",
+     :date_hired =>"1943-03-24",
+     :department =>"Sports & Health"}
+
+    robot_manager.update(robo.id, updated_robo_data)
+    updated_robo = robot_manager.find(robo.id)
+    assert_equal "Chatsworth", updated_robo.city
+    assert_equal "California", updated_robo.state
+  end
+
+  def test_it_will_destroy_an_exisiting_robot
+    create_robots(10)
+
+    total_robots = robot_manager.all.length
+    assert_equal 13, total_robots
+
+    robo = robot_manager.all.last
+    robot_manager.destroy(robo.id)
+
+    assert_equal total_robots -1, robot_manager.all.length
+  end
+
+  def test_vaild_birthdate_age
+    robot_manager.create({
+     :name       =>"ROBOT 2",
+     :city       =>"Chatsworth",
+     :state      =>"California",
+     :birthdate  =>"1923-02-14",
+     :avatar     =>"https://robohash.org/quasiquiqui.png?size=300x300&set=set1",
+     :date_hired =>"1943-03-24",
+     :department =>"Sports & Health"})
+    # binding.pry
+    assert_equal 93, robot_manager.get_all_robot_ages.last
+  end
+
+  def test_average_robot_age
+    robo = robot_manager.all
+    assert_equal 96, robot_manager.get_average_robot_age
+  end
+
+  def test_robots_hired_per_year
+    robo = robot_manager.all
+    assert_equal  "1943", robot_manager.robots_hired_per_year.keys.first
+    assert_equal 2, robot_manager.robots_hired_per_year.values.first
+  end
+
+  def test_number_employees_per_department
+    robot = robot_manager.all
+    assert_equal "sports", robot_manager.employees_per_deparment.keys.first
+    assert_equal 3, robot_manager.employees_per_deparment.values.first
+  end
+
+  def test_number_of_robots_per_city
+    robot = robot_manager.all
+    assert_equal "Chatsworth", robot_manager.population_by_city.keys.last
+    assert_equal 2, robot_manager.population_by_city.values.last
+  end
+
+  def test_number_of_robots_per_state
+    robot = robot_manager.all
+    assert_equal "California", robot_manager.population_by_state.keys.last
+    assert_equal 3, robot_manager.population_by_state.values.last
+  end 
 
 end

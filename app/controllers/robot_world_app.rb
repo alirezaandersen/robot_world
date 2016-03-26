@@ -1,13 +1,8 @@
 class RobotWorldApp < Sinatra::Base
 
-  get '/chart' do
-    @robot_stats = robot_manager.stats
-    erb :chart
-  end
-
   get '/' do
     @robots = robot_manager.all
-    erb :all
+    erb :index
   end
 
   # All
@@ -18,12 +13,13 @@ class RobotWorldApp < Sinatra::Base
 
   #Create a new robot
   get '/robots/new' do
+    @robot = Robot.new({})
     erb :new
   end
 
   post '/robots' do
-    robot_manager.create(params[:robot])
-    redirect '/robots'
+    robot_id = robot_manager.create(params[:robot])
+    redirect '/robots/%d' % [robot_id]
   end
 
   #Robot Stats
@@ -49,8 +45,6 @@ class RobotWorldApp < Sinatra::Base
     redirect "/robots/#{id}"
   end
 
-
-
   #NotFound Error
   not_found do
     erb :error
@@ -64,10 +58,10 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_manager
-    if ENV["RACK_ENV"] == "test"
-      database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_test.sqlite')
-    else
-      database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_development.sqlite')
+     if ENV["RACK_ENV"] == "test"
+       database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_test.sqlite')
+     else
+       database = Sequel.sqlite(APP_ROOT+'/db/robot_manager_development.sqlite')
     end
     @robot_manager ||= RobotWorld.new(database)
   end

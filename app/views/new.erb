@@ -1,11 +1,10 @@
-<form action="/robots" method ="post">
-  <h1>Create New Robot</h1>
-  Name: <input type="text" name="robot[name]"><br>
-  City: <input type="text" name="robot[city]"><br>
-  State: <input type="text" name="robot[state]"><br>
-  Birthdate: <input type="text" name="robot[birthdate]"><br>
-  Date Hired: <input type="text" name="robot[date_hired]"><br>
-  Department: <input type="text" name="robot[department]"><br>
-  Avatar: <input type="text" name="robot[avatar]"><br>
-  <input type='submit'>
-</form>
+<h1>Create New Robot</h1>
+
+<div class="btn-group" role="group" aria-label="...">
+  <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
+  <a href="/robots/stats"><button type="button" class="btn btn-default">Robot Statistic</button></a>
+</div>
+
+  <form action="/robots" method ="post">
+    <%= erb :_form %>
+  </form>

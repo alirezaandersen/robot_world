@@ -1,4 +1,3 @@
-
 module StatisticHelper
 
   def get_age_in_completed_years(bd, d)
