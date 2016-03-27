@@ -1,7 +1,7 @@
 <style>
 
     body {
-       background-image: url("http://southparkstudios.mtvnimages.com/shared/locations/city-hall.jpg");
+       background-image: url("http://1.bp.blogspot.com/-FQP9xGPyu6s/VbdopAkM8zI/AAAAAAAA4sY/rEXkUnOu5YU/s1600/JETSONS%2BPRIVATE%2BPROPERTY%2B2.png");
      }
 
 </style>
@@ -15,7 +15,6 @@
 </div><br>
 
 <div class="profile_center">
-
 <table>
   <% @robots.each do |robot| %>
 <tr>
@@ -28,22 +27,14 @@
 </tr>
 <tr>
     <td>
-      <h3>(<%= robot.id %>) <a tag=<%= robot.id %> href="/robots/<%= robot.id %>"><%= robot.name %></a></h3>
+      <!-- name of robots with link to show page -->
+      <body>
+      <h3><a id="bold_black_text" href="/robots/<%= robot.id %>"><%= robot.name %></a></h3>
+      <!-- <h3><a id="bold_black_text" tag=<%= robot.id %> href="/robots/<%= robot.id %>"><%= robot.name %></a></h3> -->
+      <!-- <a href="/robots/<%= robot.id %>/edit"><input type="submit" value="Edit"></a> -->
+
+    </body>
     </td>
-    <td>
-      
-    </td>
-</tr>
-<tr>
-  <td>
-      <a href="/robots/<%= robot.id %>/edit"><input type="submit" value="Edit"></a>
-    </td>
-    <td>
-    <form action="/robots/<%= robot.id %>" method ="post">
-      <input type="hidden" name="_method" value="delete">
-      <input id=<%= robot.id %> type="submit" value="Delete">
-    </form>
-  </td>
 </tr>
   <% end %>
 

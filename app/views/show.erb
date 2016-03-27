@@ -1,6 +1,7 @@
 
 <div class="col-md-12 text-center" "btn-group" role="group" aria-label="...">
   <a href="/"><button type="button" class="btn btn-default">Robot City </button></a>
+  <a href="/robots"><button type="button" class="btn btn-default">Meet the Robots</button></a>
   <a href="/robots/new"><button type="button" class="btn btn-default">Create New Robot</button></a>
   <a href="/robots/stats"><button type="button" class="btn btn-default">Robot Statistic</button></a>
 </div>
@@ -16,12 +17,21 @@
 
   <img src="<%= @robot.avatar %>">
 
-  <p><h3>
+  <h3><p>
     Name: <%= @robot.name %><br>
     City: <%= @robot.city %><br>
     State: <%= @robot.state %><br>
     Birthdate: <%= @robot.birthdate %><br>
     Date Hired: <%= @robot.date_hired %><br>
     Department: <%= @robot.department %><br>
-  </h3></p>
+  </p></h3>
+
+  <div class="col-md-4 text-center" "btn-group" role="group" aria-label="...">
+    <a href="/robots/<%= @robot.id %>/edit"><button type="button" class="btn btn-default"><input type="submit" value="Edit"></a>
+    <form action="/robots/<%= @robot.id %>" method ="post">
+      <input type="hidden" name="_method" value="delete">
+      <a href="/"><button type="button" class="btn btn-default"><input id=<%= @robot.id %> type="submit" value="Delete"></button></a>
+    </form>
+    <!-- <a href="/robots/<%= @robot.id %>/edit"><button type="button" class="btn btn-default"<input type="submit" value="Edit"</button></a> -->
+  </div>
 </div>

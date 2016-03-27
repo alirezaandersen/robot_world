@@ -11,21 +11,13 @@ class UserSeesAllRobotsTest < FeatureTest
     robot_count = robot_manager.all.length
 
     robo = robot_manager.all.last
+
     visit '/robots/%d' % [robo.id]
-
-    binding.pry
-    find('#%d' % [robo.id]).click
-    assert_equal robot_manager.all.length, robot_count-1
-
-
     assert_equal '/robots/%d' % [robo.id], current_path
-    within 'h1' do
-      assert page.has_content? 'Ali'
-    end
-    within 'p' do
-      assert page.has_content? 'Denver'
-    end
+
+    find('#%d' % [robo.id]).click
+    assert_equal '/robots', current_path
+
+    assert_equal robot_manager.all.length, robot_count -1
   end
-
-
 end
