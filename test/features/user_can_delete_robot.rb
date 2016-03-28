@@ -21,7 +21,7 @@ class UserSeesAllRobotsTest < FeatureTest
 
     find('#%d' % [robo.id]).click
     authorize 'admin', 'admin'
-    assert_equal '/robots', current_path
+    assert_equal '/robots/%d' % [robo.id], current_path
 
     assert_equal robot_manager.all.length, robot_count -1
   end
@@ -36,10 +36,10 @@ class UserSeesAllRobotsTest < FeatureTest
     assert_equal '/robots/%d' % [robo.id], current_path
 
     assert_equal robot_manager.all.length, robot_count
-    
+
     find('#%d' % [robo.id]).click
+    assert_equal '/robots/%d' % [robo.id], current_path
     authorize 'admin', 'admin'
-    assert_equal '/robots', current_path
 
     assert_equal robot_manager.all.length, robot_count -1
   end

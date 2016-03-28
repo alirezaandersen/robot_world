@@ -5,6 +5,7 @@ require 'capybara/dsl'
 require 'tilt/erb'
 require 'faker'
 require 'rack/test'
+require 'test/unit'
 
 
 
