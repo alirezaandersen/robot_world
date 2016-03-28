@@ -4,6 +4,9 @@ require 'minitest/pride'
 require 'capybara/dsl'
 require 'tilt/erb'
 require 'faker'
+require 'rack/test'
+
+
 
 Capybara.app = RobotWorldApp #sets the app that will be tested with capybara
 
@@ -25,6 +28,7 @@ module TestHelpers
     robot_manager.delete_all
     super
   end
+
 
   def reset_db
     system("rm",APP_ROOT+'/db/robot_manager_test.sqlite')
