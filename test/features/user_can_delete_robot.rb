@@ -7,7 +7,7 @@ class UserSeesAllRobotsTest < FeatureTest
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    RobotWorldApp
   end
 
   def test_user_can_delete_a_robot
@@ -18,10 +18,12 @@ class UserSeesAllRobotsTest < FeatureTest
 
     visit '/robots/%d' % [robo.id]
     assert_equal '/robots/%d' % [robo.id], current_path
-
-    find('#%d' % [robo.id]).click
+    binding.pry
     authorize 'admin', 'admin'
+    find('#%d' % [robo.id]).click
+
     assert_equal '/robots/%d' % [robo.id], current_path
+    save_and_open_page
 
     assert_equal robot_manager.all.length, robot_count -1
   end
@@ -37,10 +39,11 @@ class UserSeesAllRobotsTest < FeatureTest
 
     assert_equal robot_manager.all.length, robot_count
 
+    authorize 'admin', 'admin'
     find('#%d' % [robo.id]).click
     assert_equal '/robots/%d' % [robo.id], current_path
 
-    refute_equal robot_manager.all.length, robot_count -1
+    assert_equal robot_count -1, robot_manager.all.length
   end
 
 end

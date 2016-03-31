@@ -1,15 +1,12 @@
 require File.expand_path('../../app/config/environment', __FILE__)
-ENV['RACK_ENV'] ||= 'test'
+ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'capybara/dsl'
 require 'tilt/erb'
 require 'faker'
 require 'rack/test'
-# require 'test/unit'
-
-
-
+require 'test/unit'
 
 Capybara.app = RobotWorldApp #sets the app that will be tested with capybara
 
@@ -18,12 +15,10 @@ class FeatureTest < Minitest::Test
 end
 
 #if run shotgun defaults in developer mode, else when runs in test sets it equal to test environment
-
 #  use Rack::Auth::Basic do |username, password|
 #   username == 'admin' and password == 'admin'
 # end
 module TestHelpers
-
 
   def teardown
     robot_manager.delete_all
@@ -34,7 +29,6 @@ module TestHelpers
     robot_manager.delete_all
     super
   end
-
 
   def reset_db
     system("rm",APP_ROOT+'/db/robot_manager_test.sqlite')

@@ -24,8 +24,9 @@ body {
 }
 
 /*************************** Name Print **********************/
-#bold_black_text h3{
-  color: #0C0C0C;
+#bold_black_text a {
+    color: black !important;
+    text-decoration: none;
 }
 
 
